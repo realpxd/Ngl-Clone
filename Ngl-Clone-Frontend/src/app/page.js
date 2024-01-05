@@ -2,17 +2,34 @@
 
 import Image from 'next/image'
 import styles from './page.module.css'
-import { useRef, useState } from 'react'
+import { useRef, useState , useEffect } from 'react'
 
 export default function Home() {
   const [message, setMessage] = useState('');
+  const [confession, setConfession] = useState('');
+  const prevConfessionRef = useRef();
+
+  // Update the ref with the current confession whenever it changes
+  useEffect(() => {
+    prevConfessionRef.current = confession;
+  }, [confession]);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const formData = new FormData(e.target)
       const confessionBox = formData.get('confessionBox'); // Retrieve the value of confessionBox
-      // Send to server
+
+
+      // Compare current confessionBox with the previous confession
+      if (confessionBox === prevConfessionRef.current) {
+        showToaster('You have already sent this confession')
+        return
+      }
+
+      // Update the state with the new confession
+      setConfession(confessionBox)
+
       const response = await fetch('https://ngl-clone-backend.onrender.com/send', {
         method: 'POST',
         body: JSON.stringify({
