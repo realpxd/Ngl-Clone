@@ -29,12 +29,35 @@ export default function Home() {
     getData()
   }, [])
 
+  const handleDelete = async (data) => {
+    console.log(data)
+    const pass = prompt('Enter password')
+    if (pass !== 'baka') return console.log('Wrong password')
+
+    const res = await fetch('https://ngl-clone-backend.onrender.com/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id: data._id })
+    })
+    const result = await res.json()
+    // setConfessions(result.reverse())
+    console.log(result)
+    await getData()
+  }
+
   return (
     <main className={styles.main}>
       <h1>Dashboard</h1>
       {confessions.map((item, index) => (
-        <div key={index} data={item} className={styles.confessionBox}  onClick={() => togglePopup(item)}>
-          <p>{item.confession}</p>
+        <div key={index} >
+          <div data={item} className={styles.confessionBox} onClick={() => togglePopup(item)}>
+            <p>{item.confession}</p>
+          </div>
+          <div className={`${styles.confessionBox} ${styles.cB2}`} >
+            <span className={styles.deleteBtn} onClick={() => handleDelete(item)}>&#128465;</span>
+          </div>
         </div>
       ))}
       {popup && <Popup togglePopup={togglePopup} data={popupData} selectedConfession={selectedConfession} />}

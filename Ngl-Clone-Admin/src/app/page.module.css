@@ -20,6 +20,9 @@
   border-radius: 1rem;
   padding: 1rem;
 }
+.cB2{
+  height: 2rem;
+}
 .confessionBox p{
   font-size: 1rem;
   font-weight: bold;
@@ -29,6 +32,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  position: relative;
+}
+.deleteBtn{
+  position: relative;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 .popupBoxWrapper{

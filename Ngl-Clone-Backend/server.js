@@ -29,10 +29,6 @@ const ConfessionSchema = new mongoose.Schema({
 
 const Confession = mongoose.model('Confession', ConfessionSchema);
 
-app.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-});
-
 app.get('/', (req, res) => {
     mongoose.model('Confession').find()
         .then(confessions => res.send(confessions))
@@ -59,3 +55,16 @@ app.post('/send', (req, res) => {
 
 })
 
+app.post('/delete', (req, res) => {
+    console.log("req.body");
+    const id = req.body.id;
+    console.log(id);
+    Confession.findByIdAndDelete(id)
+        .then(() => res.json('Confession deleted.'))
+        .catch(err => res.json('Error: ' + err));
+})
+
+
+app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`);
+});
