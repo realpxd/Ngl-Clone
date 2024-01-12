@@ -1,1 +1,1 @@
-Ngl-Clone-Backend: node server.js --prefix src
+wev: node server.js --prefix Ngl-Clone-Backend
