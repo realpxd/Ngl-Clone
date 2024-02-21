@@ -16,7 +16,7 @@ export default function Home() {
 
   const getData = async () => {
     try {
-      const res = await fetch('https://ngl-clone-backend.onrender.com')
+      const res = await fetch('https://ngl-clone-backend.vercel.app/')
       const result = await res.json()
       setConfessions(result.reverse())
     } catch (err) {
@@ -34,7 +34,7 @@ export default function Home() {
     const pass = prompt('Enter password')
     if (pass !== 'baka') return console.log('Wrong password')
 
-    const res = await fetch('https://ngl-clone-backend.onrender.com/delete', {
+    const res = await fetch('https://ngl-clone-backend.vercel.app/delete', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

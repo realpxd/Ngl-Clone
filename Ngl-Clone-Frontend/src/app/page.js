@@ -30,7 +30,7 @@ export default function Home() {
       // Update the state with the new confession
       setConfession(confessionBox)
 
-      const response = await fetch('https://ngl-clone-backend.onrender.com/send', {
+      const response = await fetch('https://ngl-clone-backend.vercel.app/send', {
         method: 'POST',
         body: JSON.stringify({
           confession: confessionBox, navig: navigator.appVersion
