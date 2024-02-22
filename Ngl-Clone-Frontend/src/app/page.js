@@ -79,7 +79,7 @@ export default function Home() {
           <h1 className={styles.title}>
             Send your Confessions !
           </h1>
-          <p className={styles.desc}>NGL Clone created by <span> <a href="https://www.instagram.com/gpc.confess"> @gpc.confess </a> </span></p>
+          <p className={styles.desc}>Simple way to remain <span> <a href="#"> Anonymous </a> </span></p>
         </div>
         <form className={styles.cForm} onSubmit={handleSubmit} method='POST'>
           <label htmlFor="confessionBox"> </label>
