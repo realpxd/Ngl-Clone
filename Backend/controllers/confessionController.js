@@ -16,7 +16,7 @@ exports.getConfessions = async (req, res) => {
   const query = username ? { username } : {};
   try {
     const confessions = await Confession.find(query);
-    res.json(confessions);
+    res.json(confessions.reverse());
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -16,7 +16,7 @@ exports.getMessages = async (req, res) => {
   const query = username ? { username } : {};
   try {
     const messages = await Message.find(query);
-    res.json(messages);
+    res.json(messages.reverse());
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
