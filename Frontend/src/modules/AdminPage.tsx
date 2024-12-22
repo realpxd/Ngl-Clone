@@ -114,7 +114,7 @@ const AdminPage = () => {
         <Button
           onClick={() =>
             copyToClipboard(
-              `https://ngl-clone.vercel.app/${user?.username}/confessions`
+              `https://ngl-clone-frontend.vercel.app/${user?.username}/confessions`
             )
           }
         >
@@ -123,7 +123,7 @@ const AdminPage = () => {
         <Button
           onClick={() =>
             copyToClipboard(
-              `https://ngl-clone.vercel.app/${user?.username}/messages`
+              `https://ngl-clone-frontend.vercel.app/${user?.username}/messages`
             )
           }
         >
