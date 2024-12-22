@@ -8,7 +8,6 @@ function App() {
   return (
     <>
       <UserProvider>
-        {" "}
         <Toaster />
         <RouterProvider router={router} />
       </UserProvider>
