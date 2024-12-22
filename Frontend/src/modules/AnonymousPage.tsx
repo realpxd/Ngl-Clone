@@ -13,7 +13,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import Loader from "@/components/Loader";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUserContext } from "@/contexts/UserContext";
 
 const FormSchema = z.object({
@@ -34,6 +34,10 @@ const AnonymousPage = () => {
     },
   });
 
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const usernameFromUrl = pathSegments[1] || "pankha";
+
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     if (data.message === lastMessage) {
       toast({
@@ -46,20 +50,17 @@ const AnonymousPage = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(
-        `${API_URL}/sendMessage`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            message: data.message,
-            navig: navigator.appVersion,
-            username: user?.username ?? 'pankha',
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${API_URL}/sendMessage`, {
+        method: "POST",
+        body: JSON.stringify({
+          message: data.message,
+          navig: `${navigator.appVersion} - ${user?.username}`,
+          username: usernameFromUrl,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Failed to send message");

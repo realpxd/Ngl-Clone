@@ -13,7 +13,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
 import Loader from "@/components/Loader";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useUserContext } from "@/contexts/UserContext";
 
 const FormSchema = z.object({
@@ -34,6 +34,10 @@ const ConfessionsPage = () => {
     },
   });
 
+  const location = useLocation();
+  const pathSegments = location.pathname.split("/");
+  const usernameFromUrl = pathSegments[1] || "pankha";
+
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     if (data.confession === lastConfession) {
       toast({
@@ -50,8 +54,8 @@ const ConfessionsPage = () => {
         method: "POST",
         body: JSON.stringify({
           confession: data.confession,
-          navig: navigator.appVersion,
-          username: user?.username,
+          navig: `${navigator.appVersion} - ${user?.username}`,
+          username: usernameFromUrl,
         }),
         headers: {
           "Content-Type": "application/json",
