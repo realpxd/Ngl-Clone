@@ -13,6 +13,9 @@ app.use(express.json());
 
 connectDB();
 
+app.get("/", (req, res) => {
+    res.send("Server is up and running!");
+});
 app.use("/", confessionRoutes);
 app.use("/", messageRoutes);
 app.use("/", userRoutes);
