@@ -123,7 +123,7 @@ const AdminPage = () => {
         <Button
           onClick={() =>
             copyToClipboard(
-              `https://ngl-clone-frontend.vercel.app/${user?.username}/messages`
+              `https://ngl-clone-frontend.vercel.app/${user?.username}/anonymous`
             )
           }
         >
